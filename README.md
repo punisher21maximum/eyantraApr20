@@ -4,8 +4,8 @@
 step1 : create a branch for a feature you want to work on
 $ git branch print-uni # 1.created branch, print-uni
 $ git branch # check if branch created
-* master # * means - current branch
-  print-uni
+ * master # * means - current branch
+   print-uni
 $ git checkout print-uni # 2.switch to that print-uni branch
 
 step2 : 
