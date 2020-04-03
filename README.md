@@ -17,45 +17,45 @@ it has no effect on remote repo yet.<br>
 #add messages using vim<br>
 3.$ git commit <br>
 opens vim <br>
-write msg
-press i
-press Esc
-press :wq
-#add msgs using nano
-3.$ git commit 
-write msg
-ctrl + x
-y
-press enter
+write msg<br>
+press i<br>
+press Esc<br>
+press :wq<br>
+#add msgs using nano<br>
+3.$ git commit <br>
+write msg<br>
+ctrl + x<br>
+y<br>
+press enter<br>
 
 
-step3 : 
-#change remote repo
-$ git push -u origin print-uni
+step3 : <br>
+#change remote repo<br>
+$ git push -u origin print-uni<br>
+<br>
+step4 :<br>
+#1. switch to master<br>
+$ git checkout master<br>
+#2. check if changes to (origin master) made by someone else (remote one)<br>
+$ git pull origin master<br>
 
-step4 :
-#1. switch to master
-$ git checkout master
-#2. check if changes to (origin master) made by someone else (remote one)
-$ git pull origin master
+#print-uni not yet branch of master<br>
+$ git branch  #branches we have merged so far<br>
+*master<br>
+#3. merge print-uni (to master)<br>
+$ git merge print-uni<br>
+#git branch --merged<br>
+*master<br>
+print-uni<br>
 
-#print-uni not yet branch of master
-$ git branch  #branches we have merged so far
-*master
-#3. merge print-uni (to master)
-$ git merge print-uni
-#git branch --merged
-*master
-print-uni
+#4. push change to origin(remote repo)<br>
+$ git push origin master<br>
 
-#4. push change to origin(remote repo)
-$ git push origin master
+step5 :<br>
 
-step5 :
-
-once you have merged a branch to the master you can delete it
-#1. delete locally
-$ git branch -d print-uni
-#2. delete from remote repo
-$ git push origin --delete print-uni
+once you have merged a branch to the master you can delete it<br>
+#1. delete locally<br>
+$ git branch -d print-uni<br>
+#2. delete from remote repo<br>
+$ git push origin --delete print-uni<br>
 
