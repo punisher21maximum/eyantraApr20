@@ -1,7 +1,7 @@
 # WorkFlow
 
 ## Dont work directly on master branch
-step1 : create a branch for a feature you want to work on \n
+step1 : create a branch for a feature you want to work on <br>
 $ git branch print-uni # 1.created branch, print-uni
 $ git branch # check if branch created
  * master # * means - current branch
