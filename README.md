@@ -2,21 +2,21 @@
 
 ## Dont work directly on master branch
 step1 : create a branch for a feature you want to work on <br>
-$ git branch print-uni # 1.created branch, print-uni
-$ git branch # check if branch created
- * master # * means - current branch
-   print-uni
-$ git checkout print-uni # 2.switch to that print-uni branch
+$ git branch print-uni # 1.created branch, print-uni <br>
+$ git branch # check if branch created <br>
+ * master # * means - current branch<br>
+   print-uni<br>
+$ git checkout print-uni # 2.switch to that print-uni branch<br>
 
-step2 : 
-#inside print-uni branch
-1.make changes to anyfile you want all over djangowebsite
-2.$ git add -A
-3.$ git commit -m 'joey' #add messages properly
-it has no effect on remote repo yet.
-#add messages using vim
-3.$ git commit 
-opens vim 
+step2 : <br>
+#inside print-uni branch<br>
+1.make changes to anyfile you want all over djangowebsite<br>
+2.$ git add -A<br>
+3.$ git commit -m 'joey' #add messages properly<br>
+it has no effect on remote repo yet.<br>
+#add messages using vim<br>
+3.$ git commit <br>
+opens vim <br>
 write msg
 press i
 press Esc
