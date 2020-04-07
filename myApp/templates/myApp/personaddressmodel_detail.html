@@ -1,0 +1,30 @@
+ {% extends "myApp/base.html" %}
+
+{% block sidebar_left %}
+{{text2}}
+{% endblock %}
+
+
+{% block content %}<hr>   
+  <div  >
+  <!-- detail  -->
+  <h2><a class="article-title" href="{% url 'post-detail' object.id %}">
+    {{ object.author }}</a></h2>
+  <!-- user posts -->
+  <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
+  <!-- attr -->
+  <p>{{ object.num_fam_mem }}</p>
+  <p>{{ object.address_line1 }}</p>
+  <p >{{ object.landmark }}</p>
+  </div>
+  <hr>     
+
+  <!-- del update -->
+  {% if object.author == user %}
+  <div>
+  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+  <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+  </div>
+  {% endif %}
+  <hr>
+{% endblock content %}

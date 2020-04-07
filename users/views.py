@@ -20,6 +20,7 @@ def register(request):
 
 		if form.is_valid():#if form valid
 
+
 			#save the user
 			form.save()
 
@@ -37,7 +38,7 @@ def register(request):
 
 	#return the form
 	return render(request, 'users/register.html', {'form':form})
-	
+
 #update forms : sent to profile.html
 from .forms import UserUpdateForm, ProfileUpdateForm
 

@@ -1,0 +1,18 @@
+ {% extends "myApp/base.html" %}
+
+{% block sidebar_left %}
+{{text2}}
+{% endblock %}
+
+
+{% block content %}<hr>   
+          <div  >
+            <div class="article-metadata">
+              <p>{{ object.address_line1 }}</p>
+              <p>{{ object.num_fam_mem }}</p>
+            </div>
+           
+            <p class="article-content">{{ object.landmark }}</p>
+          </div>
+       <hr>
+{% endblock content %}

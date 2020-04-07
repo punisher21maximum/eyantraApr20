@@ -1,0 +1,42 @@
+[
+	{
+		"address_line1" : "dhanori",
+		"landmark" : "airport",
+		"additional_ph_no" : 9158883887,
+		"num_fam_mem" : 3,
+	
+		"user_id" : 1
+	},
+	{
+		"address_line1" : "kabli",
+		"landmark" : "airport",
+		"additional_ph_no" : 7066849374,
+		"num_fam_mem" : 4,
+	
+		"user_id" : 18
+	},
+	{
+		"address_line1" : "kothrud",
+		"landmark" : "airport",
+		"additional_ph_no" : 9965432112,
+		"num_fam_mem" : 5,
+	
+		"user_id" : 17
+	},
+	{
+		"address_line1" : "kuntak",
+		"landmark" : "airport",
+		"additional_ph_no" : 9158883887,
+		"num_fam_mem" : 3,
+	
+		"user_id" : 12
+	},
+	{
+		"address_line1" : "ramdi",
+		"landmark" : "airport",
+		"additional_ph_no" : 8765432121,
+		"num_fam_mem" : 9,
+	
+		"user_id" : 2
+	}
+]
