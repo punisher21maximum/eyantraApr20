@@ -23,17 +23,15 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
 	path('', include('myApp.urls')),
-    #register
+    #register login logout
 	path('register/', user_views.register, name='register'),
-	#login logout
 	path('login/', 
         auth_views.LoginView.as_view(template_name='users/login.html'), 
         name='login'),
-    
     path('logout/', 
         auth_views.LogoutView.as_view(template_name='users/logout.html'), 
         name='logout'),
-
+    #profile person-add shop-add
     path('profile/', user_views.profile, name='profile'),
     path('person-address/', user_views.person_address, name='person-address'),
     path('shop-address/', user_views.shop_address, name='shop-address'),

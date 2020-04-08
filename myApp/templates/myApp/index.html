@@ -5,18 +5,21 @@
 {% endblock %}
 
 
-{% block content %}<hr>
-{% for post in PersonAddressModel %}
+{% block content %} 
+
+<hr>
+{% for cat, shop in nearest_shop.items %}
 <div  >
-	<!-- detail  -->
-	<h2><a class="article-title" href="{% url 'post-detail' post.id %}">
-		{{ post.author }}</a></h2>
-	<!-- user posts -->
-	<a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-	<!-- attr -->
-	<p>{{ post.num_fam_mem }}</p>
-	<p>{{ post.address_line1 }}</p>
-	<p >{{ post.landmark }}</p>
+			<h1>{{cat|upper}}</h1>
+			{% for obj in shop %}
+			<div  >
+				<p>{{"shopname" }} {{obj.shop_name|upper}}</p>
+				<p>{{obj.shop_address_line1}}</p>
+				<p>{{obj.shop_gmap_location}}</p>
+			</div>
+			
+			{% endfor %}
+			
 </div>
 <hr>
 {% endfor %}

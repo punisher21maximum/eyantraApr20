@@ -36,7 +36,11 @@ class Owner_model(models.Model):
 # Aniket 17
 # Nishant 18
 
+ 
 
+#user-->profile, person, shop
+
+# PersonAddressModel = models.Person
 class PersonAddressModel(models.Model):
 
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -80,9 +84,9 @@ class PersonAddressModel(models.Model):
 		verbose_name="Distance from center in km")
 	# def __str__(self):
 	# 	return self.address_line1
-
-	def get_absolute_url(self):
-		return reverse('post-detail', kwargs={'pk': self.pk})
+# 
+	# def get_absolute_url(self):
+		# return reverse('post-detail', kwargs={'pk': self.pk})
 
 
 

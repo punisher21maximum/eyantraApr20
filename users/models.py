@@ -60,6 +60,10 @@ class Person(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(50)],
         verbose_name="Distance from center in km")
 
+    def __str__(self):
+        return self.user.username
+
+
     # def get_absolute_url(self):
     #     return reverse('post-detail', kwargs={'pk': self.pk})
 
