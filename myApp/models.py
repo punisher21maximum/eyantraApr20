@@ -41,11 +41,11 @@ class PersonAddressModel(models.Model):
 
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 
-	address_line1 = models.CharField(max_length = 50, blank=True)
+	address_line1 = models.CharField(max_length = 50)
 	address_line2 = models.CharField(max_length = 50, blank=True)
 	address_line3 = models.CharField(max_length = 50, blank=True)
 
-	landmark = models.CharField(max_length = 50, blank=True)
+	landmark = models.CharField(max_length = 50)
 
 	msg="Phone number must be entered in the format: '[6-9]\d{9}'. Up to 10 digits allowed."
 	from  django.core.validators import RegexValidator, MinValueValidator, MaxValueValidator
@@ -60,8 +60,24 @@ class PersonAddressModel(models.Model):
 		validators=[MinValueValidator(1), MaxValueValidator(20)],
 		verbose_name="number_of_family_members")
 
-	google_map_location = models.CharField(max_length = 500, blank=True)
+	gmap_location = models.PositiveSmallIntegerField(default=3, 
+		validators=[MinValueValidator(1), MaxValueValidator(50)],
+		verbose_name="Distance from center in km")
 
+	#shop form
+	is_shopkeeper = models.BooleanField(verbose_name="Are you a shopkeeper")
+	shop_name = models.CharField(max_length=30)
+	shop_category_CHOICES=[('dairy','dairy'),('grocery','grocery'),
+	('electronics','electronics'), ('mechanic','mechanic')]
+	category = models.CharField(max_length=30, choices=shop_category_CHOICES,null=True)
+
+	shop_address_line1 = models.CharField(max_length = 50)
+	shop_address_line2 = models.CharField(max_length = 50, blank=True)
+	shop_address_line3 = models.CharField(max_length = 50, blank=True)
+
+	shop_gmap_location = models.PositiveSmallIntegerField(default=3, 
+		validators=[MinValueValidator(1), MaxValueValidator(50)],
+		verbose_name="Distance from center in km")
 	# def __str__(self):
 	# 	return self.address_line1
 
