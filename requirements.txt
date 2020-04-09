@@ -70,7 +70,7 @@ python-dateutil==2.4.2
 python-debian==0.1.27
 python-systemd==231
 pytz==2019.3
-pyxdg==0.25
+pyxdg==0.26
 reportlab==3.3.0
 requests==2.9.1
 scipy==0.17.0
