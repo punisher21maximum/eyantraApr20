@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
-</head>
-<body>
-{{text2}}
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
+{% extends "myApp/base.html" %}
 
-</body>
-</html>
+{% block sidebar_left %}
+{{text2}}
+{% endblock %}
+
+
+{% block content %} 
+
+<div  style="background-color:#f5f5f0;
+padding: 10px 10px 10px 10px;">
+	<h1>{{"shop details"|upper}}</h1>
+
+	<div  >
+		
+		<p>{{"shopname" }} {{shop_obj.shop_name|upper}}</p>
+		<p>Address :  {{shop_obj.shop_address_line1}} 
+		  {{shop_obj.shop_address_line2}} 
+		  {{shop_obj.shop_address_line3}}</p>
+		<p>Category : {{shop_obj.category}}</p> 
+		<p>Phone no : {{shop_obj.user.profile.phone_number}}</p> 
+		<p>Distance from center: {{shop_obj.shop_gmap_location}}</p>
+	
+	</div>
+	
+
+	
+</div>
+
+{% endblock content %}

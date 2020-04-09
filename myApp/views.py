@@ -12,7 +12,7 @@ from django.views.generic import (
     DeleteView
 )
 from .models import PersonAddressModel
-
+from django.contrib.auth.decorators import login_required
 #UserPostListView
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -21,7 +21,7 @@ from django.shortcuts import get_object_or_404
 from users.models import Shop, Person, Profile
 shop_category_CHOICES=[('dairy','dairy'),('grocery','grocery'),
     ('electronics','electronics'), ('mechanic','mechanic')]
-	 
+@login_required
 def index(request):
 	print('shop', Shop, type(Shop), request.user.id)
 	# pos_user = Person.objects.filter(user_id=request.user.id).first().
@@ -63,13 +63,11 @@ def index(request):
 
 	return render(request, 'myApp/index.html', context)
 
+@login_required
+def detail(request, pk):
 
-def detail(request):
-	text2 = '''
-	 cbawieufb vawub cavwbs
-        
-	'''
-	return render(request, 'myApp/detail.html', {'text2' : text2})
+	context = {"shop_obj":Shop.objects.filter(pk=pk).first()}
+	return render(request, 'myApp/detail.html', context)
 
 
 
