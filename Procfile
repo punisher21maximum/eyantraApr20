@@ -1,0 +1,1 @@
+web: gunicorn eyantra2.wsgi
