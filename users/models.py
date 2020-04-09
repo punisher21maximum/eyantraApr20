@@ -70,6 +70,7 @@ class Person(models.Model):
 class Shop(models.Model):
     #shop form
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # persons = models.OneToManyField(Person, on_delete=models.CASCADE)
     is_shopkeeper = models.BooleanField(verbose_name="Are you a shopkeeper")
     shop_name = models.CharField(max_length=30, blank=True)
     shop_category_CHOICES=[('dairy','dairy'),('grocery','grocery'),
@@ -84,7 +85,7 @@ class Shop(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(50)],
         verbose_name="Distance from center in km")
     # def __str__(self):
-    #   return self.address_line1
+    #   return self.shop_name
 
     # def get_absolute_url(self):
     #     return reverse('post-detail', kwargs={'pk': self.pk})

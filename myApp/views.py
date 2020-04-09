@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 #we cant use decorators on classe (only on funcs)
 #we use these classes
@@ -16,52 +16,107 @@ from django.contrib.auth.decorators import login_required
 #UserPostListView
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
-
+from django.contrib import messages
 # Create your views here.
 from users.models import Shop, Person, Profile
 shop_category_CHOICES=[('dairy','dairy'),('grocery','grocery'),
     ('electronics','electronics'), ('mechanic','mechanic')]
+
+
+
 @login_required
 def index(request):
-	print('shop', Shop, type(Shop), request.user.id)
-	# pos_user = Person.objects.filter(user_id=request.user.id).first().
-	pos_person = Person.objects.filter(user_id=request.user.id).first().gmap_location
-	near_shop = dict()
-	for categ in ['dairy','grocery','electronics','mechanic']:
-		near_shop[ categ ] = []
-		for s in Shop.objects.all():
-			print('s.category',s.category, 'categ', categ)
-			if s.category ==  categ:
-				print('shopdist', s.shop_gmap_location, 'posper', pos_person)
+	try:
 
-				near_shop[ categ ].append( [s, abs(s.shop_gmap_location - pos_person) ] )
+		print('shop', Shop, type(Shop), request.user.id)
+		# pos_user = Person.objects.filter(user_id=request.user.id).first().
+		pos_person = Person.objects.filter(user_id=request.user.id).first().gmap_location
+		near_shop = dict()
+		for categ in ['dairy','grocery','electronics','mechanic']:
+			near_shop[ categ ] = []
+			for s in Shop.objects.all():
+				print('s.category',s.category, 'categ', categ)
+				if s.category ==  categ:
+					print('shopdist', s.shop_gmap_location, 'posper', pos_person)
 
-	for cat in near_shop:
-		for shops in near_shop[cat]:
-			print('cat', cat, ':', 'shop', shops[0].shop_name, shops[1])
+					near_shop[ categ ].append( [s, abs(s.shop_gmap_location - pos_person) ] )
 
-	# finding the nearest shop in each category
-	nearest_shop = dict()
-	for cat in ['dairy','grocery','electronics','mechanic']:
-		print('----->', cat)
-		all_shops_from_categ = near_shop[cat]
-		print(cat, all_shops_from_categ)
-		min_dist_shop_object = all_shops_from_categ[0]
-		for a_shop in all_shops_from_categ:
-			if min_dist_shop_object!=a_shop and a_shop[1]<min_dist_shop_object[1]:
-				min_dist_shop_object = a_shop 
-		nearest_shop[cat] = min_dist_shop_object
-		print('++++++++++', cat, nearest_shop[cat], nearest_shop[cat][1])
+		for cat in near_shop:
+			for shops in near_shop[cat]:
+				print('cat', cat, ':', 'shop', shops[0].shop_name, shops[1])
+
+		# finding the nearest shop in each category
+		nearest_shop = dict()
+		for cat in ['dairy','grocery','electronics','mechanic']:
+			print('----->', cat)
+			all_shops_from_categ = near_shop[cat]
+			print(cat, all_shops_from_categ)
+			min_dist_shop_object = all_shops_from_categ[0]
+			for a_shop in all_shops_from_categ:
+				if min_dist_shop_object!=a_shop and a_shop[1]<min_dist_shop_object[1]:
+					min_dist_shop_object = a_shop 
+			nearest_shop[cat] = min_dist_shop_object
+			print('++++++++++', cat, nearest_shop[cat], nearest_shop[cat][1])
+
+
+		
+
+
+				
+
+
+				#check of that shop is current user's shop
 
 
 
-	context = {
-		'nearest_shop': nearest_shop,
-		 
-	}
-
+		context = {
+			'nearest_shop': nearest_shop,
+		}
+	except:
+		messages.warning(request, f'Fill person-address form first')
+		return redirect('person-address')
 
 	return render(request, 'myApp/index.html', context)
+
+@login_required
+def my_customers_index(request):
+	#for show view - get all persons for that shop
+	#check if user has a shop
+	current_shop_obj = Shop.objects.filter(user_id=request.user.id).first()
+	print('\n\n\n\n\n\n\n')
+	print('current_shop', current_shop_obj)
+	if current_shop_obj == None:
+		print("No shops", current_shop_obj)
+		context = {"my_customers": None}
+	else:
+		current_shops = []
+		current_cat = current_shop_obj.category
+		print('current_cat', current_cat)
+		all_shops_in_current_cat = Shop.objects.filter(category=current_cat)
+		print('all_shops_in_current_cat', all_shops_in_current_cat)
+		for p in Person.objects.all():
+			x1 = p.gmap_location
+			#find nearest shop to each person in that category
+			min_dist_shop_object = all_shops_in_current_cat[0]
+			print('for person', p)
+			print('		all shops---')
+			for s in all_shops_in_current_cat:
+				print('s-', s)
+				print(min_dist_shop_object!=s, (s.shop_gmap_location-x1), (min_dist_shop_object.shop_gmap_location-x1))
+				if min_dist_shop_object!=s and abs(s.shop_gmap_location-x1)<abs(x1-min_dist_shop_object.shop_gmap_location):
+					min_dist_shop_object = s
+					print('smaller dist shop obj ----------->',s)
+			print('		nearest shop', min_dist_shop_object)
+
+			if min_dist_shop_object==current_shop_obj:
+				current_shops.append(p)
+				print('same user --------------------------------->',s)
+				print('uk', p.user, min_dist_shop_object, request.user,current_shop_obj)
+
+		context = {"my_customers": current_shops}
+
+	return render(request, 'myApp/my_customers_index.html', context)
+
 
 @login_required
 def detail(request, pk):

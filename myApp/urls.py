@@ -20,6 +20,7 @@ urlpatterns = [
 	# path('post/new/', PostCreateView.as_view(), name='post-create'),
 	path('', views.index, name='index'),
 	path('detail/<int:pk>/', views.detail, name='detail'),
+	path('my-customers-index/', views.my_customers_index, name='my_customers_index'),
 	
 ]
 

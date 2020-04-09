@@ -6,28 +6,24 @@
 
 
 {% block content %} 
-
+{{"These customer will visit you today"}}
 <hr>
-{% for cat, shop in nearest_shop.items %}
-<div  style="background-color:#f5f5f0;
+
+{% for p in my_customers %}
+<div  class="row" style="background-color:#f5f5f0;
 padding: 10px 10px 10px 10px;">
-	<h1>{{cat|upper}}</h1>
-	{% for obj in shop %}
-	<div  >
-		{% if obj.shop_name %}
-		<p>owner : {{obj.user}}</p>
-		<a href="{% url 'detail' obj.id %}">{{"shopname" }} {{obj.shop_name|upper}}</a>
-		<p>Address :  {{obj.shop_address_line1}} 
-		  {{obj.shop_address_line2}} 
-		  {{obj.shop_address_line3}}</p>
-		
-		{% else %}
-		<p>Distance from you: {{obj}}</p>
-		{% endif %}
+
+	<div class="col-md-8">
+			<p>Person : {{p}}</p>
+			 <p> {{p.user.profile.phone_number}}</p>
+			 <p> {{p.email}}</p>
+			<p>Address :  {{p.address_line1}} 
+			  {{p.address_line2}} 
+			  {{p.address_line3}}</p>
+	</div>	
+	<div class="col-md-4">
+		<img class="rounded-circle account-img" src="{{ p.user.profile.image.url }}" style="  height:100px; width:100px;">
 	</div>
-	
-	{% endfor %}
-	
 </div>
 <hr>
 {% endfor %}
