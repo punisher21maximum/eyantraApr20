@@ -121,8 +121,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+#for storing the images
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -131,10 +135,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #to redirect user after successful login to 'index' instead of deafult:'accounts/profile'
 LOGIN_REDIRECT_URL = 'index'
 LOGIN_URL = 'login'
-
-#for storing the images
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
 
 
 #reset password
