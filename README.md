@@ -33,7 +33,9 @@ batch 2 = 14:00-18:00 hrs
 
 batch 3 = 19:00-23:00 hrs
 
+## Data Flow Diagram
 
+https://github.com/punisher21maximum/eyantraApr20/issues/6#issue-597998003
 
 ## Software requirements :<br>
 chardet==2.3.0 <br>
