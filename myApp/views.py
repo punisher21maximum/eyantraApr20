@@ -22,10 +22,27 @@ from users.models import Shop, Person, Profile
 shop_category_CHOICES=[('dairy','dairy'),('grocery','grocery'),
     ('electronics','electronics'), ('mechanic','mechanic')]
 
+#email
+from django.core.mail import send_mail
+# send_mail('subject', 'you are logged in', 'vishal7x7@gmail.com', ['effort21pool@gmail.com'])
+
+
+from django.core.mail import EmailMultiAlternatives
+def func(request):
+	subject, from_email, to = 'hello', 'vishal7x7@gmail.com', 'effort21pool@gmail.com'
+	text_content = 'This is vishal, we are the hero'
+	html_content = 'This is <h1>vishal , we are the hero</h1>'
+	msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+	msg.attach_alternative(html_content, "text/html")
+	msg.attach_file(request.user.profile.image.url)
+	msg.send()
+
+
 
 
 @login_required
 def index(request):
+	# func(request)
 	try:
 
 		print('shop', Shop, type(Shop), request.user.id)
@@ -86,7 +103,7 @@ def my_customers_index(request):
 	print('\n\n\n\n\n\n\n')
 	print('current_shop', current_shop_obj)
 	if current_shop_obj == None:
-		print("No shops", current_shop_obj)
+		# print("No shops", current_shop_obj)
 		context = {"my_customers": None}
 	else:
 		current_shops = []
@@ -105,17 +122,61 @@ def my_customers_index(request):
 				print(min_dist_shop_object!=s, (s.shop_gmap_location-x1), (min_dist_shop_object.shop_gmap_location-x1))
 				if min_dist_shop_object!=s and abs(s.shop_gmap_location-x1)<abs(x1-min_dist_shop_object.shop_gmap_location):
 					min_dist_shop_object = s
-					print('smaller dist shop obj ----------->',s)
+					# print('smaller dist shop obj ----------->',s)
 			print('		nearest shop', min_dist_shop_object)
 
 			if min_dist_shop_object==current_shop_obj:
 				current_shops.append(p)
-				print('same user --------------------------------->',s)
-				print('uk', p.user, min_dist_shop_object, request.user,current_shop_obj)
+				# print('same user --------------------------------->',s)
+				# print('uk', p.user, min_dist_shop_object, request.user,current_shop_obj)
 
 		context = {"my_customers": current_shops}
 
 		#send email to my customers
+
+		for cust in current_shops:
+			sub = f"You can visit  {current_shop_obj.category} today "
+			msg = f'''
+			\n\n
+			Visit  <h1>{current_shop_obj.shop_name}<h1>
+			shop owner <h3>{current_shop_obj.user}</h3> 
+			shop address : <h2>{current_shop_obj.shop_address_line1}, {current_shop_obj.shop_address_line2},{current_shop_obj.shop_address_line3}</h2>
+			location : <h2>{current_shop_obj.shop_gmap_location}</h2>
+			'''
+			to = cust.user.email
+			# print(sub, msg, to)
+			# send_mail(sub, msg, 'vishal7x7@gmail.com', [to])
+
+			msg = EmailMultiAlternatives(sub, msg, 'vishal7x7@gmail.com', [to])
+			msg.attach_alternative(msg, "text/html")
+			# msg.attach_file(request.user.profile.image.url)
+			try:
+				msg.send()
+			except:
+				pass
+
+		#email to shopkeeper
+		sub="These people will visit you today"
+		total = len(current_shops)
+		text_content=f"Total count : {total}"
+		for cust in current_shops:
+			text_content+=f'''
+			\n\n
+			<h1 style="font-color:red;">{cust.user} {cust.user.last_name}</h1>
+			<h3>{cust.user.profile.phone_number}<h3>
+			adhaar number <h3>{cust.user.profile.adhaar_no}<h3>
+			num of family members <h3>{cust.user.person.num_fam_mem}<h3>
+			Distance from you {abs(cust.user.person.gmap_location-request.user.shop.shop_gmap_location)} km
+			'''
+		# send_mail(sub, msg, 'vishal7x7@gmail.com', ['effort21pool@gmail.com'])
+		subject, from_email, to = "These people will visit you today", 'vishal7x7@gmail.com', 'effort21pool@gmail.com'
+		# text_content = 'This is vishal, we are the hero'
+		html_content = text_content
+		msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+		msg.attach_alternative(html_content, "text/html")
+		# msg.attach_file(request.user.profile.image.url)
+		msg.send()
+
 
 	return render(request, 'myApp/my_customers_index.html', context)
 
