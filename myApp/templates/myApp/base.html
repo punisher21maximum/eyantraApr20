@@ -119,6 +119,12 @@
 	              {% if user.shop.is_shopkeeper %}
                 <li class="list-group-item list-group-item-light"><a class="nav-item nav-link active" href="{% url 'my_customers_index' %}">My Customer</a></li>
                 {% endif %}
+                <hr>
+                <p class='text-muted'>Handle password</p>
+                {% if user.is_authenticated %}
+                 <li class="list-group-item list-group-item-light"><a class="nav-item nav-link active" href="{% url 'password_reset' %}">Reset Password</a></li>
+                 <li class="list-group-item list-group-item-light"><a class="nav-item nav-link active" href="{% url 'password_change' %}">Change Password</a></li>
+                 {% endif %}
 	                 
 	              </ul>
 	            </p>

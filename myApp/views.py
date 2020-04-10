@@ -115,6 +115,8 @@ def my_customers_index(request):
 
 		context = {"my_customers": current_shops}
 
+		#send email to my customers
+
 	return render(request, 'myApp/my_customers_index.html', context)
 
 
