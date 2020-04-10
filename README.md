@@ -18,11 +18,17 @@ Once/twice a week at particular hours of the day
 Maintaining social distancing and avoiding panick to when they will buy food and essentials.
 
 Groups size of locality = 315 people (45x3)
+
 Sub-group size = 45people  (15x3)
+
 Further sub-group (batch) size = 15
+
 No. of grocery shops they go to = 1 (Always)
+
 batch 1 = 9:00-13:00 hrs
+
 batch 2 = 14:00-18:00 hrs
+
 batch 3 = 19:00-23:00 hrs
 
 
