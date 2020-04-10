@@ -37,6 +37,8 @@ batch 3 = 19:00-23:00 hrs
 
 https://github.com/punisher21maximum/eyantraApr20/issues/6#issue-597998003
 
+https://github.com/punisher21maximum/eyantraApr20/issues/7#issue-597998978
+
 ## Software requirements :<br>
 chardet==2.3.0 <br>
 Django==3.0  <br>
