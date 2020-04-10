@@ -2,9 +2,9 @@
 
 ### Title : fightcovid2021
 
-## description : 
+## Description : 
 
-## Software reuirements :<br>
+## Software requirements :<br>
 chardet==2.3.0 <br>
 Django==3.0  <br>
 gunicorn==20.0.4  <br>
@@ -17,7 +17,7 @@ django-bootstrap==0.2.4 <br>
 django-crispy-forms==1.9.0 <br>
 Pillow==7.1.1 <br>
 
-##Process flow<br>
+## Process flow<br>
 1.User register : fill username, email, password<br>
 2.User fill profile form : his personal details<br>
 3.User fill shop form : if he owns a shop<br>
