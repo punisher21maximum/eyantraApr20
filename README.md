@@ -5,11 +5,24 @@
 ##description : 
 
 ##Software reuirements :
+chardet==2.3.0 <br>
+Django==3.0  <br>
+gunicorn==20.0.4  <br>
+idna==2.9 <br>
+python-dateutil==2.4.2 <br>
+pytz==2019.3 <br>
+requests==2.9.1 <br>
+urllib3==1.13.1 <br>
+django-bootstrap==0.2.4 <br>
+django-crispy-forms==1.9.0 <br>
+Pillow==7.1.1 <br>
 
-
-
-
-
+##Process flow
+1.User register : fill username, email, password<br>
+2.User fill profile form : his personal details<br>
+3.User fill shop form : if he owns a shop<br>
+4.As buyer role : gets a email of nearest shop to him in different category<br>
+As shopkeeper role : gets email a list of people who will visit him today, with adhaar no, name etc to verify the buyer<br>
 
 ## Dont work directly on master branch
 step1 : create a branch for a feature you want to work on <br>
