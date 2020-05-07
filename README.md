@@ -65,6 +65,7 @@ $ git branch print-uni # 1.created branch, print-uni <br>
 $ git branch # check if branch created <br>
  * master # * means - current branch<br>
    print-uni<br>
+   
 $ git checkout print-uni # 2.switch to that print-uni branch<br>
 
 step2 : <br>
