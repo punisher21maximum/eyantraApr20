@@ -59,7 +59,7 @@ Pillow==7.1.1 <br>
 4.As buyer role : gets a email of nearest shop to him in different category<br>
 As shopkeeper role : gets email a list of people who will visit him today, with adhaar no, name etc to verify the buyer<br>
 
-## Dont work directly on master branch
+## Don't work directly on master branch
 step1 : create a branch for a feature you want to work on <br>
 $ git branch print-uni # 1.created branch, print-uni <br>
 $ git branch # check if branch created <br>
